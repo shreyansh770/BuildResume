@@ -9,3 +9,4 @@ let firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+let auth  = firebase.auth();
