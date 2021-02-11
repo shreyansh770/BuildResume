@@ -13,17 +13,24 @@
 
     <div class="header">
         <ul>
-            <li><a id="signin" href="">Sign In</a></li>
-            <li><a id="signup" href="">Sign Up</a></li>
-            <li><a id="logout" href="">Log Out</a></li>
+            <div class="welcome"></div>
+            <li><a id="signin" class="hide" href="">Sign In</a></li>
+            <li><a id="signup" class="hide" href="">Sign Up</a></li>
+            <li><a id="logout" class="hide" href="">Log Out</a></li>
         </ul>
     </div>
 
-    <div class="signup-form form">
+    <div class="signup-form form ">
 
         <h1>Sign Up Form</h1>
 
         <form id="signup-form">
+
+            <div class="name">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+            </div>
+
             <div class="email">
                 <label for="email">Email</label>
                 <input type="text" id="email" name="email">
@@ -35,6 +42,27 @@
             </div>
 
             <button type="submit">Sign Up</button>
+
+        </form>
+    </div>
+
+
+    <div class="signin-form form active ">
+
+        <h1>Sign In Form</h1>
+
+        <form id="signin-form">
+            <div class="email">
+                <label for="email">Email</label>
+                <input type="text" id="email-si" name="email">
+            </div>
+
+            <div class="password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password-si">
+            </div>
+
+            <button type="submit">Sign In</button>
 
         </form>
     </div>
