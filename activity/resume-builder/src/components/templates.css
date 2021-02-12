@@ -1,0 +1,48 @@
+.templates{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+    height: 500px;
+    justify-content: space-around;
+
+}
+
+.template-intro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.template-styles{
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+} 
+
+.template{
+    height: 270px;
+    width: 250px;
+    position: relative;
+}
+
+.template img{
+    height: 100%;
+    width: 100%;
+}
+
+.template:hover{
+     opacity: 0.5;
+}
+
+.template-btn{
+    background: linear-gradient(45deg , #1dbfaf 0, #1eaedb 85% ,#1eaedb 100%);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid white;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+}
