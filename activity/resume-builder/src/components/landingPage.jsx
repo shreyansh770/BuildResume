@@ -1,11 +1,24 @@
 import React from 'react';
+import "./landingPage.css"
+import resume from "../static/images/resume.webp"
 
 const Landing = () => {
     return ( 
         <div>
-            <div className="content">
-                <h1>Create The Best Resume</h1>
-                <h4>With Us You Can Build The Best Resumes That Can Get You Your Dream Jobs</h4>
+            <div className="landing-page">
+
+                <h1>Create a resume that stands out</h1>
+                <p>Create a resume that perfectally describes your skills and match your job profile</p>
+               
+               <div>
+                   <button className="landing-btn">Get Started For Free</button>
+               </div>
+
+               <div className="logo">
+                 <img src={resume} alt=""/>
+               </div>
+
+
             </div>
         </div>
      );

@@ -1,0 +1,20 @@
+.about{
+    display: flex;
+    margin: 50px;
+    justify-content: space-around;
+}
+    
+.left-about{
+    width: 50%;
+    margin: auto;
+    /* background: green; */
+}
+
+.right-about{
+    width: 50%;
+    /* background: green; */
+}
+
+.right-about img {
+   width: 100%;
+}

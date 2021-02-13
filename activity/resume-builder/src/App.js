@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Redirect ,Switch } from "react-router-dom";
 import './App.css';
 import About from './components/about';
+import Contact from './components/contact';
 import Header from "./components/Header";
 import Landing from './components/landingPage';
 import Register from './components/register';
@@ -40,10 +41,14 @@ function App() {
                 <SignIn></SignIn>
               </Route>
 
+              <Route path = "/contact" exact>
+                <Contact></Contact>
+              </Route>
+
               <Redirect to="/">
                 <Landing></Landing>
               </Redirect>
-              
+
              </Switch>
           
           
