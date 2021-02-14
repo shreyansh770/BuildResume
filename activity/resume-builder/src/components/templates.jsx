@@ -5,6 +5,7 @@ import skin1 from "../static/images/skin1.svg"
 import skin2 from "../static/images/skin2.svg"
 import skin3 from "../static/images/skin3.svg"
 import skin4 from "../static/images/skin4.svg"
+import { Link } from "react-router-dom";
 
 
 
@@ -21,22 +22,30 @@ const Templates = () => {
 
         <div className="template">
           <img src={skin1} alt="" />
-          <button className="template-btn">USE TEMPLATE</button>
+          <Link to = "/contact">
+           <button className="template-btn">USE TEMPLATE</button>
+          </Link> 
         </div>
 
         <div className="template">
         <img src={skin2} alt="" />
-        <button className="template-btn">USE TEMPLATE</button>
+        <Link to = "/contact">
+          <button className="template-btn">USE TEMPLATE</button>
+        </Link> 
         </div>
 
         <div className="template">
         <img src={skin3} alt="" />
-        <button className="template-btn">USE TEMPLATE</button>
+        <Link to = "/contact">
+          <button className="template-btn">USE TEMPLATE</button>
+        </Link>
         </div>
 
         <div className="template">
         <img src={skin4} alt="" />
-        <button className="template-btn">USE TEMPLATE</button>
+        <Link to = "/contact">
+          <button className="template-btn">USE TEMPLATE</button>
+        </Link>
         </div>
 
       </div>

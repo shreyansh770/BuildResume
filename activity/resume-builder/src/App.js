@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect ,Switch } from "react-router-d
 import './App.css';
 import About from './components/about';
 import Contact from './components/contact';
+import Education from './components/education';
 import Header from "./components/Header";
 import Landing from './components/landingPage';
 import Register from './components/register';
@@ -41,8 +42,11 @@ function App() {
                 <SignIn></SignIn>
               </Route>
 
-              <Route path = "/contact" exact>
-                <Contact></Contact>
+            {/* by passing a component like this component={Contact} we can get any more props (ex: history , match) */}
+              <Route path = "/contact" exact component={Contact}></Route>
+
+              <Route path = "/education" exact>
+                <Education></Education>
               </Route>
 
               <Redirect to="/">

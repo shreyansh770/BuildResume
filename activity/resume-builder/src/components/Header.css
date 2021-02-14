@@ -38,6 +38,7 @@
     border-radius: 5px;
     border: 2px solid #7ed6df ;
     padding: 5px;
+    width: 100%;
 }
 
 .btn:hover{

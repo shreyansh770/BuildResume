@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./contact.css";
 import Preview from "./preview";
 
@@ -34,6 +35,17 @@ class Contact extends Component {
          contact : { ...this.state.contact , [id]:value }
      })
     
+   }
+
+   onSubmitContactDetails  = () =>{
+
+    // abhi tak ki details db me save ho jaye
+    //navigate to education
+    //  e.preventDefault();
+     
+    this.props.history.push("/education");//same work as window.location
+
+
    }
 
   render() {
@@ -103,6 +115,16 @@ class Contact extends Component {
               <input type="text" name="" id="pin" value ={contact.pin} onChange = { (e) =>{this.onChangeHandler(e)}}/>
             </div> 
 
+            <div className="next full">
+               <button className = "btn" onClick ={(e) => {this.onSubmitContactDetails(e)}}>Next</button>
+            </div>
+
+            <div className="back full">
+            <Link to ="/templates">
+               <button className ="btn">Back</button>
+            </Link> 
+            </div>
+ 
           </div>
         </div>
 
