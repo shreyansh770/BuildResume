@@ -1,23 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./contact.css";
 import Preview from "./preview";
 
 class Contact extends Component {
   state = {
-      contact : {
-        fname :"",
-        lname :"",
-        summary :"",
-        email :"",
-        phone :"",
-        profession :"",
-        street :"",
-        city :"",
-        state :"",
-        country :"",
-        pin :"",
-      }
+      contact : this.props.contactDetails,
+      education : this.props.educationDetails
   };
 
 
@@ -50,7 +40,7 @@ class Contact extends Component {
 
   render() {
 
-     let {contact} = this.state;
+     let {contact , education} = this.state;
 
     return (
       <div className="contact">
@@ -129,7 +119,7 @@ class Contact extends Component {
         </div>
 
         <div className="preview-form">
-            <Preview contact = {contact}></Preview>
+            <Preview contact = {contact} education ={education}></Preview>
         </div>
         
       </div>
@@ -137,4 +127,13 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+const mapStateToProps = (state) =>{
+    return {
+      contactDetails : state.contactDetails,
+      educationDetails : state.educationDetails
+    }
+}
+
+
+
+export default connect(mapStateToProps)(Contact);

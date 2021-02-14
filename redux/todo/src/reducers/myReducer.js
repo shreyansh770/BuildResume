@@ -7,6 +7,7 @@ const initialSate = {
 }
 
 export function myReducer(state = initialSate , action){
+    console.log(action)
     if(action.type == "ADD_TODOS"){
         return{
             ...state,
