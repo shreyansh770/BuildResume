@@ -12,6 +12,26 @@ class Education extends Component {
 
   onChangeHandler = (e)=>{
     e.preventDefault();
+    let value  = e.target.value;
+    let key  = e.target.id
+    this.setState({
+      education  : {...this.state.education , [key]:value}
+    })
+  }
+
+  onSubmitEducationDetails = () =>{
+    // save in redux store
+
+    this.props.updateEducationDetails(this.state.education)
+    this.props.history.push("/finalize")
+
+  }
+
+  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+  componentWillReceiveProps(newProps) {
+      this.setState({
+        education : {...newProps.educationDetails}
+      })
   }
 
   render() {
@@ -121,10 +141,7 @@ class Education extends Component {
           <div className="next full">
             <button
               className="btn"
-              onClick={(e) => {
-                this.onSubmitContactDetails(e);
-              }}
-            >
+              onClick={this.onSubmitEducationDetails}>
               Next
             </button>
           </div>
@@ -153,4 +170,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Education);
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    updateEducationDetails: (educationDetails) => {dispatch({type:"UPDATE_EDUCATION" , educationDetails:educationDetails})}
+  }
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(Education);

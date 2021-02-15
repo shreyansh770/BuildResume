@@ -17,8 +17,9 @@
 
 .template-styles{
   display: flex;
-  width: 90%;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 50%;
 } 
 
 .template{
@@ -46,4 +47,10 @@
     top: 50%;
     left: 25%;
     outline: none;
+}
+
+
+.selected-skin{
+    box-shadow: 0 2px 9px rgba(186,186,186,0.5);
+
 }

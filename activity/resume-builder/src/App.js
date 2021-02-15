@@ -4,6 +4,7 @@ import './App.css';
 import About from './components/about';
 import Contact from './components/contact';
 import Education from './components/education';
+import Finalize from './components/finalize';
 import Header from "./components/Header";
 import Landing from './components/landingPage';
 import Register from './components/register';
@@ -26,9 +27,7 @@ function App() {
                 <Landing></Landing>
               </Route>
 
-              <Route path = "/templates" exact>
-                <Templates></Templates>
-              </Route>
+              <Route path = "/templates" exact component ={Templates}></Route>
 
               <Route path = "/about" exact>
                 <About></About>
@@ -45,9 +44,10 @@ function App() {
             {/* by passing a component like this component={Contact} we can get any more props (ex: history , match) */}
               <Route path = "/contact" exact component={Contact}></Route>
 
-              <Route path = "/education" exact>
-                <Education></Education>
-              </Route>
+              <Route path = "/education" exact component={Education}></Route>
+
+              <Route path = "/finalize" exact component={Finalize}></Route>
+
 
               <Redirect to="/">
                 <Landing></Landing>

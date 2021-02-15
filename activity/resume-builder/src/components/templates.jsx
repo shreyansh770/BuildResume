@@ -1,57 +1,78 @@
-import React from "react";
+import React, { Component } from 'react'
+import {skinCodes} from "../Constants/skinCodes"
+import { connect } from "react-redux";
+
 import "./templates.css";
 
-import skin1 from "../static/images/skin1.svg"
-import skin2 from "../static/images/skin2.svg"
-import skin3 from "../static/images/skin3.svg"
-import skin4 from "../static/images/skin4.svg"
-import { Link } from "react-router-dom";
+
+class Templates extends Component {
+  state = { 
+    skinCode : this.props.skinCode
+   }
+
+
+   handleSkinSelect = (skinCode) => {
+      this.props.changeSkinCode(skinCode)
+      this.props.history.push("/contact")
+   }
+
+  //  componentDidMount() {
+  //    console.log("cdm" , this.props)
+  //  }
+   
+
+   componentWillReceiveProps(newProps) {
+     console.log(newProps)
+     this.setState({
+       skinCode : newProps.skinCode
+     })
+   }
 
 
 
-const Templates = () => {
-  return (
+  render() { 
+  
+    let {skinCode} = this.state
+
+    return (   
+
     <div className="templates">
 
-      <div className="template-intro">
-        <h1>Select a template to get started</h1>
-        <p>You can edit and change the template later</p>
-      </div>
-
-      <div className="template-styles">
-
-        <div className="template">
-          <img src={skin1} alt="" />
-          <Link to = "/contact">
-           <button className="template-btn">USE TEMPLATE</button>
-          </Link> 
-        </div>
-
-        <div className="template">
-        <img src={skin2} alt="" />
-        <Link to = "/contact">
-          <button className="template-btn">USE TEMPLATE</button>
-        </Link> 
-        </div>
-
-        <div className="template">
-        <img src={skin3} alt="" />
-        <Link to = "/contact">
-          <button className="template-btn">USE TEMPLATE</button>
-        </Link>
-        </div>
-
-        <div className="template">
-        <img src={skin4} alt="" />
-        <Link to = "/contact">
-          <button className="template-btn">USE TEMPLATE</button>
-        </Link>
-        </div>
-
-      </div>
-
+    <div className="template-intro">
+      <h1>Select a template to get started</h1>
+      <p>You can edit and change the template later</p>
     </div>
-  );
-};
 
-export default Templates;
+    <div className="template-styles">
+
+     {skinCodes.map((skin)=>{
+        
+        let className = skin.value == skinCode ? "selected-skin" : ""
+        return  <div key = {skin.id} className={`template ${className}`}>
+           <img src={`/images/${skin.value}.svg`} alt="" />
+           <button className="template-btn" onClick={()=>{this.handleSkinSelect(skin.value)}}>USE TEMPLATE</button>
+        </div>
+
+      })}
+
+        </div>
+      </div> 
+
+    );
+  }
+}
+ 
+
+const mapStateToProps = (state) =>{
+  return{
+    skinCode : state.document.skinCode
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+   return{
+      changeSkinCode : (skinCode) => {dispatch({type : "CHANGE_SKIN" , skinCode : skinCode})}
+   }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Templates);

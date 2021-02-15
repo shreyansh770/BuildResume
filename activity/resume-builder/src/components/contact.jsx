@@ -5,6 +5,7 @@ import "./contact.css";
 import Preview from "./preview";
 
 class Contact extends Component {
+
   state = {
       contact : this.props.contactDetails,
       education : this.props.educationDetails
@@ -31,12 +32,25 @@ class Contact extends Component {
 
     // abhi tak ki details db me save ho jaye
     //navigate to education
-    //  e.preventDefault();
+   
+
+    this.props.updateContactDetails(this.state.contact)
      
     this.props.history.push("/education");//same work as window.location
 
 
    }
+
+
+   componentWillReceiveProps(newProps) {
+    console.log(newProps)
+    console.log(this.props)
+    this.setState({
+      contact : newProps.contactDetails
+    })
+     
+   }
+   
 
   render() {
 
@@ -106,7 +120,7 @@ class Contact extends Component {
             </div> 
 
             <div className="next full">
-               <button className = "btn" onClick ={(e) => {this.onSubmitContactDetails(e)}}>Next</button>
+               <button className = "btn" onClick={ this.onSubmitContactDetails }>Next</button>
             </div>
 
             <div className="back full">
@@ -134,6 +148,12 @@ const mapStateToProps = (state) =>{
     }
 }
 
+const mapDispatchToProps = (dispatch)=>{
+     return{
+       // yaha se hamare component ke props ke pass updateContactDetails namm ka function hoga
+       updateContactDetails: (contactDetails) => {dispatch({type:"UPDATE_CONTACT" , contactDetails:contactDetails})}
+     }
+}
 
 
-export default connect(mapStateToProps)(Contact);
+export default connect(mapStateToProps , mapDispatchToProps)(Contact);
