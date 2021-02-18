@@ -8,7 +8,8 @@ class Contact extends Component {
 
   state = {
       contact : this.props.contactDetails,
-      education : this.props.educationDetails
+      education : this.props.educationDetails,
+      // skinCode : this.props.document.skinCode
   };
 
 

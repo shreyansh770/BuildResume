@@ -2,20 +2,28 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./finalize.css";
 import Preview from "./preview";
+import {skinCodes} from "../Constants/skinCodes"
 
-import skin1 from "../static/images/skin1.svg"
-import skin2 from "../static/images/skin2.svg"
-import skin3 from "../static/images/skin3.svg"
-import skin4 from "../static/images/skin4.svg"
-import { Link } from "react-router-dom";
 
 class Finalize extends Component {
   state = {
     contact: this.props.contact,
     education: this.props.education,
+    skinCode :  this.props.skinCode
   };
+
+  handleSkinSelect = (skinCode) => {
+    this.props.changeSkinCode(skinCode)
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      skinCode : newProps.skinCode
+    })
+  }
+
   render() {
-    let { contact, education } = this.state;
+    let { contact, education,skinCode } = this.state;
     return (
 
       <div className="finalize">
@@ -25,33 +33,14 @@ class Finalize extends Component {
 
         <div className="final-templates">
 
-        <div className="template">
-          <img src={skin1} alt="" />
-          <Link to="/contact">
-            <button className="template-btn">USE TEMPLATE</button>
-          </Link>
+        {skinCodes.map((skin)=>{
+          let className = skin.value == skinCode ? "selected-skin" : ""
+          return  <div key = {skin.id} className={`template ${className}`}>
+           <img src={`/images/${skin.value}.svg`} alt="" />
+           <button className="template-btn" onClick={()=>{this.handleSkinSelect(skin.value)}}>USE TEMPLATE</button>
         </div>
+        })}
 
-        <div className="template">
-          <img src={skin2} alt="" />
-          <Link to="/contact">
-            <button className="template-btn">USE TEMPLATE</button>
-          </Link>
-        </div>
-
-        <div className="template">
-          <img src={skin3} alt="" />
-          <Link to="/contact">
-            <button className="template-btn">USE TEMPLATE</button>
-          </Link>
-        </div>
-
-        <div className="template">
-          <img src={skin4} alt="" />
-          <Link to="/contact">
-            <button className="template-btn">USE TEMPLATE</button>
-          </Link>
-        </div>
         </div>
       </div>
     );
@@ -62,7 +51,14 @@ const mapStateToProps = (state) => {
   return {
     contact: state.contactDetails,
     education: state.educationDetails,
+    skinCode :  state.document.skinCode
   };
 };
 
-export default connect(mapStateToProps)(Finalize);
+const mapDispatchToProps = (dispatch) =>{
+  return{
+     changeSkinCode : (skinCode) => {dispatch({type : "CHANGE_SKIN" , skinCode : skinCode})}
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Finalize);

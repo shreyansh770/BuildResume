@@ -1,8 +1,21 @@
+import { connect } from "react-redux";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css"
 
-const Header = () => {
+
+
+const handleLogout = (logout) =>{
+
+    logout();
+}
+
+
+
+
+const Header = (props) => {
+  let {auth} = props;
+
   return (
     <div className="header">
       <div className="header-logo">
@@ -11,25 +24,65 @@ const Header = () => {
       </Link>
       </div>
       <div className="header-links">
+
+      { auth ?
+
         <ul>
+
           <li>
             <Link to="/templates">Resume Templates</Link>
           </li>
           <li>
             <Link to="/about">About Us</Link>
+          </li>  
+
+          <li>
+            <Link to = "/" onClick={()=>handleLogout(props.logout)}> LogOut</Link>
           </li>
+
+        </ul>
+
+        :
+
+        <ul>
+
+          <li>
+            <Link to="/about">About Us</Link>
+          </li> 
+
           <li>
             <Link to="/register">
                     <button className="btn">Register</button>  
             </Link>
           </li>
+
           <li>
             <Link to="/Signin">Sign In</Link>
           </li>
+
         </ul>
+
+      
+      }
+
+
+
       </div>
     </div>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) =>{
+  return {
+      auth :  state.auth.isAuth
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+     return {
+      logout : () => {dispatch({type : "LOGOUT" })}
+     }
+}
+
+
+export default connect(mapStateToProps , mapDispatchToProps)(Header);
