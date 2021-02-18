@@ -1,43 +1,120 @@
-import { connect } from 'react-redux';
-import React from 'react';
+import { connect } from "react-redux";
+import React, { Component } from 'react'
+import "./signin.css";
+import { auth, provider } from "../firebase/fbConfig";
+import { login } from "../actions/authAction";
 
-import {auth, provider} from "../firebase/fbConfig"
+// const handleLogin = (login) => {
+//   // auth.signInWithPopup(provider).then((user)=>{
 
-const handleLogin = (login)  =>{
-       
+//   //    let {displayName , email} = user.user
+//   //    let userDetail = {
+//   //      displayName,
+//   //      email
+//   //    }
+//   //    login(userDetail)
 
-    
-    auth.signInWithPopup(provider).then((user)=>{
+//   // }).catch((error) =>{
+//   //    console.log(error)
+//   // })
+//   console.log("object");
+//   let userDetail = {
+//     name: "shreyansh",
+//     email: "test@123.gmail",
+//   };
+//   login(userDetail);
+// };
 
-       let {displayName , email} = user.user
-       let userDetail = {
-         displayName,
-         email
-       }
-       login(userDetail)
+class SignIn extends Component {
+  state = {
+      email:"",
+      password:""
+  };
 
-    }).catch((error) =>{
-       console.log(error)
-    })
-     
-}
+    onChangeHandler = (e) =>{
+      //id pw set
+      
+      let id = e.target.id;
+      let value = e.target.value;
 
-
-const SignIn = (props) => {
-    return <button onClick = {()=>{handleLogin(props.login)} }>Sign In With Google</button>
-     
-}
-
-const mapStateToProps = (state) =>{
-    return {
-        auth : state.auth.isAuth
+       this.setState({
+          ...this.state,
+          [id]:value
+       })
     }
-}
- 
-const mapDispatchToProps = (dispatch) =>{
-    return {
-        login : (userDetails) => {dispatch({type : "LOGIN",userDetails : userDetails})}
- }
+
+    onSubmit = (e)=>{
+      e.preventDefault();
+      this.props.login(this.state);
+    };
+
+  render() {
+    return (
+      <div className="signin-form">
+        <div className="signin-heading">
+          <h1>Sign In</h1>
+        </div>
+
+        <div className="signin-form-details">
+          <div className="input-group full">
+            <label htmlFor="">Email Id</label>
+            <input
+              type="text"
+              id="email"
+              value={this.state.email}
+              onChange={(e) => {
+                this.onChangeHandler(e);
+              }}
+            />
+          </div>
+
+          <div className="input-group full">
+            <label htmlFor="">Password</label>
+            <input
+              type="text"
+              id="password"
+              value={this.state.password}
+              onChange={(e) => {
+                this.onChangeHandler(e);
+              }}
+            />
+          </div>
+
+          <div className="input-group full">
+            <button
+              className="btn f"
+              onClick={this.onSubmit}
+            >
+              Sign In
+            </button>
+            {/* <button className = "btn" >Sign In With Google</button> */}
+          </div>
+
+            <div className="input-group full">
+                {this.props.message && <span>{this.props.message}</span>}
+            </div>
+
+        </div>
+      </div>
+    );
+  }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignIn)
+
+
+const mapStateToProps = (state) => {
+  return {
+    // auth: state.auth.isAuth,
+    message : state.auth.message
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (userDetails) => {
+      dispatch(login(userDetails));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

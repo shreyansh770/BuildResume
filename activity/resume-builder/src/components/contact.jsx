@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { updateContact } from "../actions/contactAction";
 import "./contact.css";
 import Preview from "./preview";
 
@@ -152,7 +153,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch)=>{
      return{
        // yaha se hamare component ke props ke pass updateContactDetails namm ka function hoga
-       updateContactDetails: (contactDetails) => {dispatch({type:"UPDATE_CONTACT" , contactDetails:contactDetails})}
+       updateContactDetails: (contactDetails) => {dispatch(updateContact(contactDetails))}
      }
 }
 

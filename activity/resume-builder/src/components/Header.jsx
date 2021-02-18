@@ -3,14 +3,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css"
 import { auth } from "../firebase/fbConfig";
+import { logout } from "../actions/authAction";
 
 
 
 const handleLogout = (logout) =>{
 
-    auth.signOut().then(() =>{
-      logout();
-    })
+    // auth.signOut().then(() =>{
+    //   logout();
+    // })
+
+    logout();
 }
 
 
@@ -83,7 +86,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
      return {
-      logout : () => {dispatch({type : "LOGOUT" })}
+      logout : () => {dispatch(logout())}
      }
 }
 

@@ -38,12 +38,16 @@ import { educationReducer } from "./educationReducer";
 //UPDATE_EDUCATION
 
 
-
+import {firebaseReducer} from "react-redux-firebase"
+import {firestoreReducer} from "redux-firebase"
 
 //combining reducers
 export const myReducer = combineReducers({
     auth :authReducer,
     contactDetails : contactReducer,
     educationDetails : educationReducer,
-    document : documentReducer
+    document : documentReducer,
+    //these two will link our local store to firbase and give us multiple function
+    firebase : firebaseReducer,
+    firestore : firestoreReducer
 })
