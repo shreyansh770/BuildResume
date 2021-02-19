@@ -1,4 +1,4 @@
-import {initialState} from "./intialState";
+// import {initialState} from "./intialState";
 
 import { combineReducers } from "redux";
 import { authReducer } from "./authReducer";
@@ -39,7 +39,7 @@ import { educationReducer } from "./educationReducer";
 
 
 import {firebaseReducer} from "react-redux-firebase"
-import {firestoreReducer} from "redux-firebase"
+import {firestoreReducer} from "redux-firestore"
 
 //combining reducers
 export const myReducer = combineReducers({

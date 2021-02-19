@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { compose } from "redux";
+import { firestoreConnect } from 'react-redux-firebase'
 import { updateContact } from "../actions/contactAction";
 import "./contact.css";
 import Preview from "./preview";
@@ -157,5 +159,6 @@ const mapDispatchToProps = (dispatch)=>{
      }
 }
 
+//firestoreConnect : it connects the firebase collection to the redux
 
-export default connect(mapStateToProps , mapDispatchToProps)(Contact);
+export default compose(connect(mapStateToProps , mapDispatchToProps) ,firestoreConnect([{collection :"resumes"}]))(Contact);

@@ -25,5 +25,18 @@ export const authReducer = (state = initialState.auth , action) =>{
              message : action.error
          }
      }
+     else if(action.type == "LOGOUT_FAILED"){
+         return state;
+     }
+     else if(action.type == "SIGNUP_FAILED"){
+         return{
+             ...state,
+             message : action.error
+         }
+     }
+     else if(action.type == "SIGNUP"){
+         return state;     
+     }
+     
     return state;
 }
