@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import { updateState } from '../actions/updateAction';
 
 
 
@@ -16,7 +17,10 @@ class Landing extends Component {
         console.log(this.props)
         let uid  = this.props.firebaseAuth.uid;
         let data  = this.props.firebaseData.resumes[uid];
-        console.log(data)
+        
+          this.props.updateState(data);
+          this.props.history.push("/templates")
+        
     }
 
 
@@ -30,7 +34,12 @@ class Landing extends Component {
                
                <Link to = "/templates">
                <div>
-                   <button className="landing-btn" onClick={this.getStartedHandler}>Get Started For Free</button>
+                 {this.props.firebaseAuth.uid 
+                    ?
+                    <button className="landing-btn" onClick={this.getStartedHandler}>Get Started For Free</button>
+                    : <span>Loding....</span>
+
+                 } 
                </div>
                </Link>
 
@@ -53,7 +62,13 @@ const mapStateToProps = (state) =>{
 }
 
 
-
+const mapDispatchToProps = (dispatch)=>{
+    
+          return {
+              
+            updateState  : (state) => {dispatch(updateState(state))}
+          }
+}
 
  //compose is used when we have to use to high order component
-export default compose(connect(mapStateToProps),firestoreConnect([{collection:"resumes"}]))(Landing);
+export default compose(connect(mapStateToProps , mapDispatchToProps),firestoreConnect([{collection:"resumes"}]))(Landing);

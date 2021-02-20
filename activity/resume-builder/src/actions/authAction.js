@@ -10,6 +10,7 @@ export const login = (userDetails)=>{
             let guser;
             let firebase = getFirebase();
             let db  = getFirestore();
+            // console.log(getState()) this will have access to state
 
             firebase.auth().signInWithEmailAndPassword(userDetails.email ,userDetails.password).then((obj)=>{
                 guid = obj.user.uid;
@@ -47,7 +48,7 @@ export const login = (userDetails)=>{
                 dispatch({type : "LOGIN_FAILED",error : err.message})
             })
         
-    }
+    }  
     
 }
 
