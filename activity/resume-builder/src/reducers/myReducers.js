@@ -48,6 +48,7 @@ export const myReducer = combineReducers({
     educationDetails : educationReducer,
     document : documentReducer,
     //these two will link our local store to firbase and give us multiple function
+    // these two state will be saved in redux and will come from firebase
     firebase : firebaseReducer,
     firestore : firestoreReducer
 })

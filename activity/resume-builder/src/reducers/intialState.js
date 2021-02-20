@@ -7,33 +7,33 @@ export const initialState = {
     },
 
     document:{
-        docId : "1234",
-        uid : "1",
-        skinCode :"skin1"
+        docId : "",
+        uid : "",
+        skinCode :""
     },
    
     contactDetails :{
-        fname :"Shrey",
-        lname :"Thakur",
-        summary :"Web Devp",
-        email :"test@123",
-        phone :"12345",
-        profession :"web dev",
-        street :"central street",
-        city :"New Delhi",
-        state :"delhi",
-        country :"India",
-        pin :"110089"
+        fname :"",
+        lname :"",
+        summary :"",
+        email :"",
+        phone :"",
+        profession :"",
+        street :"",
+        city :"",
+        state :"",
+        country :"",
+        pin :""
     },
 
     educationDetails: {
-        collegeName : "MAIT",
-        degree : "EEE",
-        cgpa : "8.4",
-        city: "New Delhi",
-        state : "Delhi",
-        graduationMonth : "Aug",
-        graduationYear : "2023"
+        collegeName : "",
+        degree : "",
+        cgpa : "",
+        city: "",
+        state : "",
+        graduationMonth : "",
+        graduationYear : ""
     }
 
 

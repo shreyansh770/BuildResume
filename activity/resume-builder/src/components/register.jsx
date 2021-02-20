@@ -63,7 +63,7 @@ class Register extends Component {
           <div className="input-group full">
             <label htmlFor="">Email Id</label>
             <input
-              type="text"
+              type="email"
               id="email"
               value={this.state.email}
               onChange={(e) => {
@@ -75,7 +75,7 @@ class Register extends Component {
           <div className="input-group full">
             <label htmlFor="">Password</label>
             <input
-              type="text"
+              type="password"
               id="password"
               value={this.state.password}
               onChange={(e) => {

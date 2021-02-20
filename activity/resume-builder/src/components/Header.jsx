@@ -31,7 +31,7 @@ const Header = (props) => {
       </div>
       <div className="header-links">
 
-      { auth ?
+      { auth.uid ? // auth.uid will come form firebase state
 
         <ul>
 
@@ -80,7 +80,8 @@ const Header = (props) => {
 
 const mapStateToProps = (state) =>{
   return {
-      auth :  state.auth.isAuth
+      // auth :  state.auth.isAuth
+      auth :  state.firebase.auth
   }
 }
 
