@@ -4,6 +4,8 @@ import "./education.css";
 import {Link} from  "react-router-dom"
 import { connect } from "react-redux";
 import { updateEducation } from "../actions/educationAction";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 
 class Education extends Component {
   state = {
@@ -177,4 +179,7 @@ const mapDispatchToProps = (dispatch)=>{
   }
 }
 
-export default connect(mapStateToProps , mapDispatchToProps)(Education);
+
+
+
+export default compose(connect(mapStateToProps , mapDispatchToProps) ,firestoreConnect([{collection :"resumes"}]))(Education);

@@ -7,5 +7,9 @@ export const educationReducer = (state = initialState.educationDetails , action)
              ...action.educationDetails
          }
     }
+    else if(action.type == "FAILED_UPDATE_EDUCATION"){
+        console.log(action.err)
+        return state;
+    }
     return state;
 }
