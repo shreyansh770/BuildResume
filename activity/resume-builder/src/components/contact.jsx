@@ -36,13 +36,9 @@ class Contact extends Component {
 
     // abhi tak ki details db me save ho jaye
     //navigate to education
-   
-
     this.props.updateContactDetails(this.state.contact)
      
     this.props.history.push("/education");//same work as window.location
-
-
    }
 
 
@@ -51,8 +47,7 @@ class Contact extends Component {
     console.log(this.props)
     this.setState({
       contact : newProps.contactDetails
-    })
-     
+     })
    }
    
 
